@@ -62,12 +62,41 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+a1 = [ones(m, 1) X];            % 5000 * 401
+a2 = sigmoid(a1 * Theta1');     % 5000 * 25
+a2 = [ones(m, 1) a2];           % 5000 * 26
+a3 = sigmoid(a2 * Theta2');     % 5000 * 10
+
+for k = 1:num_labels
+    J = J + 1/m* ( sum( (-1 * (y==k)) .* log(a3(:,k)) ) - sum( (1 - (y==k)) .* log(1 - a3(:,k)) ) ) ;
+end
+
+% regularized cost part
+Theta1reg = Theta1(:,2:end);
+Theta2reg = Theta2(:,2:end);
+J_reg = lambda / 2 / m * (sum(sum(Theta1reg .* Theta1reg)) + sum(sum(Theta2reg .* Theta2reg)));
+
+J = J + J_reg;
 
 
+for t = 1:m
+    a1 = [1;X(t,:)'];           % 401 * 1
+    z2 = Theta1 * a1;           % 25 * 1
+    a2 = [1;sigmoid(z2)];       % 26 * 1
+    z3 = Theta2 * a2;           % 10 * 1
+    a3 = sigmoid(z3);           % 10 * 1
+    
+    yt = ((1:num_labels)' == y(t,1) );  % 10 * 1, if y(t,1)=3, then yt=[0010000000]'
+    delta3 = a3 - yt;       % 10 * 1
+    %           25 * 10         10 * 1      25 * 1   ==   25 * 1
+    delta2 = (Theta2(:,2:end)' * delta3) .* sigmoidGradient(z2);
+    
+    Theta2_grad = Theta2_grad + delta3 * a2';
+    Theta1_grad = Theta1_grad + delta2 * a1';
+end
 
-
-
-
+Theta2_grad = (Theta2_grad + lambda * [zeros(size(Theta2,1),1) Theta2(:,2:end)] )/ m;
+Theta1_grad = (Theta1_grad + lambda * [zeros(size(Theta1,1),1) Theta1(:,2:end)] )/ m;
 
 
 
