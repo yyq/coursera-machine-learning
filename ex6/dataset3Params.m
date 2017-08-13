@@ -22,12 +22,24 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
+candidateParam = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+resultArray=zeros(64,3);
 
+for i = 0:63
+    tempc = candidateParam(mod(i,8)+1);
+    tempsigma = candidateParam(floor(i/8)+1);
+    resultArray(i+1,1) = tempc;
+    resultArray(i+1,2) = tempsigma;
+    
+    model= svmTrain(X, y, tempc, @(x1, x2) gaussianKernel(x1, x2, tempsigma));
+    predictions = svmPredict(model, Xval);
+    error = mean(double(predictions ~= yval));
+    resultArray(i+1,3) = error;
+end
 
-
-
-
-
+minposition = find(resultArray(:,3)==min(resultArray(:,3) ) );
+C = resultArray(minposition, 1);
+sigma = resultArray(minposition, 2);
 
 % =========================================================================
 

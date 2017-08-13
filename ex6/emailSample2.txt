@@ -1,34 +1,40 @@
-Folks,
- 
-my first time posting - have a bit of Unix experience, but am new to Linux.
+Gradle Newsletter
+July 2017
+Welcome to the July newsletter!
 
- 
-Just got a new PC at home - Dell box with Windows XP. Added a second hard disk
-for Linux. Partitioned the disk and have installed Suse 7.2 from CD, which went
-fine except it didn't pick up my monitor.
- 
-I have a Dell branded E151FPp 15" LCD flat panel monitor and a nVidia GeForce4
-Ti4200 video card, both of which are probably too new to feature in Suse's default
-set. I downloaded a driver from the nVidia website and installed it using RPM.
-Then I ran Sax2 (as was recommended in some postings I found on the net), but
-it still doesn't feature my video card in the available list. What next?
- 
-Another problem. I have a Dell branded keyboard and if I hit Caps-Lock twice,
-the whole machine crashes (in Linux, not Windows) - even the on/off switch is
-inactive, leaving me to reach for the power cable instead.
- 
-If anyone can help me in any way with these probs., I'd be really grateful -
-I've searched the 'net but have run out of ideas.
- 
-Or should I be going for a different version of Linux such as RedHat? Opinions
-welcome.
- 
-Thanks a lot,
-Peter
+The Gradle team has been working hard on the upcoming Gradle 4.1 release, which will contain a number of improvements to parallel execution, the build cache, Java 9 support, composite builds, and more. Please download and try Gradle 4.1 RC1 ? we would love your feedback.
 
--- 
-Irish Linux Users' Group: ilug@linux.ie
-http://www.linux.ie/mailman/listinfo/ilug for (un)subscription information.
-List maintainer: listmaster@linux.ie
+Gradle 4.1 Parallel Test Display
 
+In parallel, Gradle Enterprise has added powerful new tools for understanding and debugging build caching and incremental builds in its 2017.4 release. This release also introduces support for remote build cache nodes, and more.
 
+It was wonderful to interact with the Gradle community at the Gradle Summit last month. Thank you to everyone who spoke or attended. Videos of all sessions are now published to the Gradle YouTube channel ? enjoy!
+
+Feedback from our online Gradle training classes has been overwhelmingly positive, so we are pleased to begin to offer free training in German, and we will be investing in further expansion in the future. Stay tuned!
+
+Last but not least, we?re pleased to announce a new home for Gradle Guides: a centralized place for getting started, plugin development, and in-depth guides!
+
+?The Gradle Team
+
+New Releases
+
+Gradle Enterprise 2017.4 ? Featuring task inputs comparison, task output origin tracing, and much more in this release.
+Gradle Enterprise 2017.4 build comparison
+
+Gradle 4.0.1 ? This bug-fix release addresses regressions in 4.0; upgrade recommended.
+
+Gradle Kotlin DSL version 0.10 ? Featuring a new kotlin-dsl plugin, the latest version of Kotlin (1.1.3), and many improvements to usability, stability, and performance.
+
+Featured Plugins and Tools
+
+ktlint-gradle ? A wrapper around ktlint for linting Kotlin sources.
+Gretty 2.0.0 ? Major upgrade of a plugin for running web applications. This new version includes support for Gradle 4.0, Jetty 9.4, and Spring Boot 1.5.4 among other improvements.
+gradle-completion 1.2.0 ? Featuring Gradle 4.0 options completion, background cache updates, and gw support.
+Upcoming Trainings
+
+Aug 08-11: Advanced Gradle Fundamentals for Java/JVM (Online, $100)
+Sep 05-06: Introduction to Gradle (Online, FREE)
+Sep 12-13: Einf?hrung in Gradle | Deutsch (Online, FREE)
+Gradle
+Gradle Inc. | 325 9th Street | San Francisco, CA 94103
+Privacy Policy | Unsubscribe
