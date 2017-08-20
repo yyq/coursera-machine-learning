@@ -21,11 +21,14 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+for i=1:size(X,1)
+    tempx = X(i,:);
+    matrixx = repmat(tempx,K,1);
+    square = (centroids - matrixx).*(centroids - matrixx);
+    tempsum = sum(square,2);
+    [v,index] = min(tempsum);
+    idx(i) = index;
+end
 
 % =============================================================
 
