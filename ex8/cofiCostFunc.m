@@ -40,20 +40,38 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+matrics = X * Theta' - Y;
+matrics2 = matrics .* matrics;
 
+J = 1 / 2 * sum(sum(matrics2 .* R));
 
+J_reg = lambda / 2 * ( sum(sum(Theta .* Theta)));
+J_reg = J_reg + lambda / 2 * (sum(sum(X .* X)));
+J = J + J_reg;
 
+for i=1:num_movies
+    % For the i-th movie, get all the user index who rated? eg (1 3 5 7)
+    idx = find(R(i, :) == 1);
+    % Get all theta of those users,  4 * n_f
+    thetatemp = Theta(idx, :);
+    % For the i-th movie, get real rating of those users, 1 * 4
+    ytemp = Y(i, idx);
+    % 1*nf      =  1*n_f  * n_f*4        1*4       4*nf 
+    X_grad(i,:) = (X(i,:) * thetatemp' - ytemp) * thetatemp; 
+    X_grad(i,:) = X_grad(i,:) + lambda * X(i,:);
+end
 
-
-
-
-
-
-
-
-
-
-
+for j=1:num_users
+    % For the j-th user, get all movies' index he rated, eg(1 3 5 7)
+    idx = find(R(:,j) == 1);
+    % Get all features of those movies,   4 * n_f
+    xtemp = X( idx, :);
+    % For the j-th user, get real rating of those movies, 4 * 1
+    ytemp = Y(idx, j);
+    %   1*n_f       = ( 4*n_f  *   n_f*1 )    4*1     
+    Theta_grad(j,:) = (xtemp * Theta(j,:)' - ytemp )' * xtemp;
+    Theta_grad(j,:) = Theta_grad(j,:) + lambda * Theta(j,:) ;
+end
 
 % =============================================================
 

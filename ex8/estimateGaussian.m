@@ -20,15 +20,14 @@ sigma2 = zeros(n, 1);
 %               the data for the i-th feature and sigma2(i)
 %               should contain variance of the i-th feature.
 %
+mu_t = sum(X, 1) ./ m;
 
+minus_array = X - repmat(mu_t, m , 1);
 
+sigma2_t = sum((minus_array .* minus_array) ./m);
 
-
-
-
-
-
-
+mu = mu_t';
+sigma2 = sigma2_t';
 
 % =============================================================
 
